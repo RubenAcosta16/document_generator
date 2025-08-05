@@ -2,7 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { ServiceContainer } from "../../../shared/ServiceContainer";
 import { TemplateError } from "../../domain/errors";
 import { AuthInvalidCredentialsError } from "../../../Auth/domain/errors";
-import { DeleteDTO, ExtractVariablesDTO, GenerateDocxDTO } from "./DTO";
+import {
+  DeleteDTO,
+  ExtractVariablesDTO,
+  GenerateDocxDTO,
+  GetAllDTO,
+} from "./DTO";
 
 export class ExpressTemplateController {
   async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -13,14 +18,19 @@ export class ExpressTemplateController {
         );
       }
 
+      // Extraer page y limit de query params
+      const { page, limit }: GetAllDTO = req.query;
+
       const templates =
         await ServiceContainer.templateGenerator.getAllTemplates.run(
-          req.user.id.value
+          req.user.id.value,
+          page as string | undefined,
+          limit as string | undefined
         );
-      // falta usuario
+
       res
-        .json(templates.map((template) => template.mapToPrimitives()))
-        .status(200);
+        .status(200)
+        .json(templates.map((template) => template.mapToPrimitives()));
     } catch (error) {
       next(error);
     }

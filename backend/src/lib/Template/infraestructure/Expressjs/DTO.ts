@@ -10,3 +10,8 @@ export type GenerateDocxDTO = {
   templateId: string;
   data: { [key: string]: string };
 };
+
+export type GetAllDTO = {
+  page?: number;
+  limit?: number;
+};

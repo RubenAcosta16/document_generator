@@ -12,24 +12,34 @@ export class InMemoryDbTemplateGenerator
     this.templates.push(template);
   }
 
-  async getAllTemplates(userId: UserId): Promise<Template[]> {
+  async getAllTemplates(
+    userId: UserId,
+    page?: number,
+    limit?: number
+  ): Promise<Template[]> {
+    // Filtrar solo las plantillas del usuario
     const templateList = this.templates.filter(
       (t) => t.userId.value === userId.value
     );
-    return templateList;
+
+    // Si no se pasan page y limit, devolver todo
+    if (page === undefined || limit === undefined) {
+      return templateList;
+    }
+
+    // Calcular offset
+    const offset = (page - 1) * limit;
+
+    // Devolver el segmento correspondiente
+    return templateList.slice(offset, offset + limit);
   }
 
-  async getTemplateById(
-    id: TemplateId
-  ): Promise<Template | null> {
+  async getTemplateById(id: TemplateId): Promise<Template | null> {
     const template = this.templates.find((t) => t.id.value === id.value);
     return template || null;
   }
- 
-  async deleteTemplateById(
-    id: TemplateId,
-    userId: UserId
-  ): Promise<void> {
+
+  async deleteTemplateById(id: TemplateId, userId: UserId): Promise<void> {
     this.templates = this.templates.filter(
       (template) =>
         template.id.value !== id.value && template.userId.value === userId.value
