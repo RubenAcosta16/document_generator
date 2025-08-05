@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 import { ExpressAuthRouter } from "./lib/Auth/infraestructure/Expressjs/ExpressAuthRouter";
 import { errorMiddleware } from "./lib/shared/infraestructure/middleware/errorMiddleware";
 import { PORT } from "./lib/shared/infraestructure/config";
-import { ExpressTemplateGeneratorRouter } from "./lib/TemplatesGenerator/infraestructure/Expressjs/ExpressTemplateGeneratorRouter";
+import { ExpressTemplateRouter } from "./lib/Template/infraestructure/Expressjs/ExpressTemplateRouter";
 
 const app = express();
 
@@ -29,7 +29,7 @@ declare module "express" {
 
 // app.use("/api/v1/user", ExpressUserRouter);
 app.use("/api/v1/auth", ExpressAuthRouter);
-app.use("/api/v1/templates", ExpressTemplateGeneratorRouter);
+app.use("/api/v1/templates", ExpressTemplateRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   errorMiddleware(err, req, res, next);

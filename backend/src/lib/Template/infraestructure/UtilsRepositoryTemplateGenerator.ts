@@ -3,7 +3,7 @@ import Docxtemplater from "docxtemplater";
 import { v4 as uuidv4 } from "uuid";
 
 import { TemplateGeneratorUtilsRepository } from "../domain/repository/TemplateGeneratorUtilsRepository";
-import { TemplatesGenerator } from "../domain/TemplatesGenerator";
+import { Template } from "../domain/Template";
 import { Sizes, Variable } from "../domain/types";
 
 export class UtilsRepositoryTemplateGenerator
@@ -13,6 +13,17 @@ export class UtilsRepositoryTemplateGenerator
     return uuidv4();
   }
 
+/**
+ * The function `extractVariablesFromDocx` parses a DOCX file to extract variables and their sizes.
+ * @param {Buffer} contentBuffer - The `extractVariablesFromDocx` function takes a `Buffer` object
+ * named `contentBuffer` as a parameter. This buffer contains the content of a DOCX file. The function
+ * reads the content of the DOCX file, extracts variables enclosed in curly braces `{}` along with
+ * optional size information,
+ * @returns The function `extractVariablesFromDocx` is returning an array of unique `Variable` objects
+ * extracted from the content of a DOCX file. Each `Variable` object has a `name` property representing
+ * the variable name and a `size` property representing the variable size. If there is an error during
+ * the extraction process, an empty array is returned.
+ */
   extractVariablesFromDocx(contentBuffer: Buffer): Variable[] {
     try {
       const zip = new PizZip(contentBuffer);
@@ -63,7 +74,7 @@ export class UtilsRepositoryTemplateGenerator
   }
 
   async generateDocx(
-    template: TemplatesGenerator,
+    template: Template,
     data: { [key: string]: string }
   ): Promise<Buffer> {
     console.log("dataaaa abajo");

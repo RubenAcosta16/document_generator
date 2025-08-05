@@ -4,12 +4,12 @@ import { NextFunction, Request, Response } from "express";
 import { ServiceContainer } from "../../../shared/ServiceContainer";
 import { AuthInvalidCredentialsError } from "../../domain/errors";
 // import { roles } from "../../../User/UserTypes";
-import { login, register } from "./ExpressAuthProps";
+import { LoginDTO, RegisterDTO } from "./DTO";
 // import { roles } from "../../UserTypes";
 
 export class ExpressAuthController {
   register = async (req: Request, res: Response, next: NextFunction) => {
-    const { name, password, email }: register = req.body;
+    const { name, password, email }: RegisterDTO = req.body;
 
     try {
       await ServiceContainer.auth.register.run(name, email, password);
@@ -38,7 +38,7 @@ export class ExpressAuthController {
   // };
 
   login = async (req: Request, res: Response, next: NextFunction) => {
-    const { password, email }: login = req.body;
+    const { password, email }: LoginDTO = req.body;
 
     try {
       const data = await ServiceContainer.auth.login.run(email, password);
@@ -75,7 +75,7 @@ export class ExpressAuthController {
 
   logout = (req: Request, res: Response, next: NextFunction) => {
     try {
-      res.clearCookie("access_token").json({ message: "Logout successful" });
+      res.clearCookie("access_token").send();
     } catch (error) {
       next(error);
     }

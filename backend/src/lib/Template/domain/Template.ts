@@ -1,16 +1,16 @@
 import { UserId } from "../../User/domain/Props/UserId";
-import { TemplateGeneratorFilename } from "./props/TemplateGeneratorFilename";
-import { TemplateGeneratorId } from "./props/TemplateGeneratorId";
+import { TemplateFilename } from "./props/TemplateFilename";
+import { TemplateId } from "./props/TemplateId";
 
-export class TemplatesGenerator {
-  id: TemplateGeneratorId;
-  filename: TemplateGeneratorFilename;
+export class Template {
+  id: TemplateId;
+  filename: TemplateFilename;
   content: Buffer;
   userId: UserId;
 
   constructor(
-    id: TemplateGeneratorId,
-    filename: TemplateGeneratorFilename,
+    id: TemplateId,
+    filename: TemplateFilename,
     content: Buffer,
     userId: UserId
   ) {

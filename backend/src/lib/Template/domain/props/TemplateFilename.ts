@@ -1,6 +1,6 @@
-import { TemplatesGeneratorError } from "../errors";
+import { TemplateError } from "../errors";
 
-export class TemplateGeneratorFilename {
+export class TemplateFilename {
   value: string;
 
   constructor(value: string) {
@@ -10,7 +10,7 @@ export class TemplateGeneratorFilename {
 
   private isValid() {
     if (!this.value) {
-      throw new TemplatesGeneratorError("TemplateGenerator filename is not valid");
+      throw new TemplateError("TemplateGenerator filename is not valid");
     }
     // por ahora no se me ocurren validaciones adicionales
   }

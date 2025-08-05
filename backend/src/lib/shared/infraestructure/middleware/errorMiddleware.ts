@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 // import {} from "../../errorFactory";
 import { UserError, UserNotFoundError } from "../../../User/domain/errors";
 import { AuthInvalidCredentialsError } from "../../../Auth/domain/errors";
-import { TemplatesGeneratorError, TemplatesGeneratorNotFoundError } from "../../../TemplatesGenerator/domain/errors";
+import { TemplateError, TemplateNotFoundError } from "../../../Template/domain/errors";
 // import { ImageError } from "../../../Image/domain/errors";
 
 export const errorMiddleware = (
@@ -14,7 +14,7 @@ export const errorMiddleware = (
   if (
     err instanceof AuthInvalidCredentialsError ||
     err instanceof UserError ||
-    err instanceof TemplatesGeneratorError
+    err instanceof TemplateError
     // err instanceof ImageError
   ) {
     return res.status(400).json({
@@ -22,7 +22,7 @@ export const errorMiddleware = (
     });
   }
 
-  if (err instanceof UserNotFoundError || err instanceof TemplatesGeneratorNotFoundError) {
+  if (err instanceof UserNotFoundError || err instanceof TemplateNotFoundError) {
     return res.status(404).json({
       message: err.message,
     });

@@ -1,12 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-// import { ServiceContainer } from "../../Shared/infrastructure/ServiceContainer";
-// import { UserNotFoundError } from "../domain/UserNotFoundError";
 import { ServiceContainer } from "../../../shared/ServiceContainer";
-import { TemplatesGeneratorError } from "../../domain/errors";
+import { TemplateError } from "../../domain/errors";
 import { AuthInvalidCredentialsError } from "../../../Auth/domain/errors";
-// import { roles } from "../../UserTypes";
+import { DeleteDTO, ExtractVariablesDTO, GenerateDocxDTO } from "./DTO";
 
-export class ExpressTemplateGeneratorController {
+export class ExpressTemplateController {
   async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       if (!req.user) {
@@ -33,7 +31,8 @@ export class ExpressTemplateGeneratorController {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    const { templateId } = req.params;
+    const { templateId }: ExtractVariablesDTO =
+      req.params as ExtractVariablesDTO;
     try {
       if (!req.user) {
         throw new AuthInvalidCredentialsError(
@@ -55,16 +54,8 @@ export class ExpressTemplateGeneratorController {
 
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      // const { email, id, name, password } = req.body as {
-      //   id: string;
-      //   name: string;
-      //   email: string;
-      //   role: string;
-      //   password: string;
-      // };
-
       if (req.file === undefined) {
-        throw new TemplatesGeneratorError("File is required");
+        throw new TemplateError("File is required");
         return;
       }
 
@@ -90,7 +81,7 @@ export class ExpressTemplateGeneratorController {
   }
 
   async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const { templateId } = req.params;
+    const { templateId }: DeleteDTO = req.params as DeleteDTO;
     try {
       if (!req.user) {
         throw new AuthInvalidCredentialsError(
@@ -115,9 +106,7 @@ export class ExpressTemplateGeneratorController {
     next: NextFunction
   ): Promise<void> {
     try {
-      const { templateId, data } = req.body;
-
-      console.log(data);
+      const { templateId, data }: GenerateDocxDTO = req.body;
 
       if (!req.user) {
         throw new AuthInvalidCredentialsError(

@@ -1,14 +1,15 @@
 import { AuthLogin } from "../Auth/application/AuthLogin";
 import { AuthRegister } from "../Auth/application/AuthRegister";
 import { AuthTokenInfraestrucutre } from "../Auth/infraestructure/AuthTokenInfraestrucutre";
-import { ExtractVariablesFromDocx } from "../TemplatesGenerator/application/ExtractVariablesFromDocx";
-import { GenerateDocx } from "../TemplatesGenerator/application/GenerateDocx";
-import { TemplateGeneratorCreate } from "../TemplatesGenerator/application/TemplateGeneratorCreate";
-import { TemplateGeneratorDelete } from "../TemplatesGenerator/application/TemplateGeneratorDelete";
-import { TemplateGeneratorGetAll } from "../TemplatesGenerator/application/TemplateGeneratorGetAll";
-import { TemplateGeneratorGetById } from "../TemplatesGenerator/application/TemplateGeneratorGetById";
-import { InMemoryDbTemplateGenerator } from "../TemplatesGenerator/infraestructure/InMemoryDbTemplateGenerator";
-import { UtilsRepositoryTemplateGenerator } from "../TemplatesGenerator/infraestructure/UtilsRepositoryTemplateGenerator";
+import { ExtractVariablesFromDocx } from "../Template/application/ExtractVariablesFromDocx";
+import { GenerateDocx } from "../Template/application/GenerateDocx";
+import { TemplateCreate } from "../Template/application/TemplateCreate";
+import { TemplateDelete } from "../Template/application/TemplateDelete";
+import { TemplateGeneratorGetAll } from "../Template/application/TemplateGetAll";
+import { TemplateGetById } from "../Template/application/TemplateGetById";
+import { InMemoryDbTemplateGenerator } from "../Template/infraestructure/InMemoryDbTemplateGenerator";
+import { UtilsRepositoryTemplateGenerator } from "../Template/infraestructure/UtilsRepositoryTemplateGenerator";
+
 
 import { UserCreate } from "../User/application/UserCreate";
 import { UserDelete } from "../User/application/UserDelete";
@@ -38,7 +39,7 @@ export const ServiceContainer = {
     register: new AuthRegister(userRepository, authRepository),
   },
   templateGenerator: {
-    create: new TemplateGeneratorCreate(
+    create: new TemplateCreate(
       templateGeneratorDbRepository,
       templateGeneratorUtilsRepository,
       userRepository
@@ -47,7 +48,7 @@ export const ServiceContainer = {
       templateGeneratorDbRepository,
       userRepository
     ),
-    deleteTemplateById: new TemplateGeneratorDelete(
+    deleteTemplateById: new TemplateDelete(
       templateGeneratorDbRepository
     ),
     generateDocx: new GenerateDocx(
@@ -58,7 +59,7 @@ export const ServiceContainer = {
       templateGeneratorDbRepository,
       templateGeneratorUtilsRepository
     ),
-    getTemplateById: new TemplateGeneratorGetById(
+    getTemplateById: new TemplateGetById(
       templateGeneratorDbRepository
     ),
   },
