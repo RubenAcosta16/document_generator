@@ -8,9 +8,11 @@ Esta aplicación está diseñada para simplificar la creación de documentos en 
 
 En lugar de modificar documentos existentes o crear formatos desde cero, esta herramienta te permite diseñar una plantilla con **variables**.
 
-1.  **Crea tu plantilla:** Simplemente toma un documento .docx con el formato que deseas y define tus variables.
-2.  **Define tus variables:** Usa la sintaxis `{nombre_variable}`. Por ejemplo, si necesitas un campo para un nombre, solo escribe `{nombre}` en tu documento.
-3.  **Genera el documento:** Al cargar la plantilla en la aplicación, se detectarán automáticamente las variables y se crearán los campos de entrada correspondientes. Solo ingresa los valores y genera un documento listo al instante,rándote tiempo.
+1. inicia sesion en /login
+1.  Primero ve a la ruta en el navegador /templates
+2.  **Crea tu plantilla:** Simplemente toma un documento .docx con el formato que deseas y define tus variables.
+3.  **Define tus variables:** Usa la sintaxis `{nombre_variable}`. Por ejemplo, si necesitas un campo para un nombre, solo escribe `{nombre}` en tu documento.
+4.  **Genera el documento:** Al cargar la plantilla en la aplicación, se detectarán automáticamente las variables y se crearán los campos de entrada correspondientes. Solo ingresa los valores y genera un documento listo al instante,rándote tiempo.
 
 ### Características adicionales de las variables:
 
@@ -35,10 +37,12 @@ Esta aplicación es un proyecto personal con el objetivo de practicar y aplicar 
 
 ### Estado Actual
 
-Actualmente, el proyecto está en curso debido a otros compromisos. Aún falta implementar tests y documentación completa en toda la aplicación, pero estoy priorizando el desarrollo del backend.
+Actualmente, el proyecto está en curso debido a otros compromisos. Aún falta implementar tests y documentación completa en toda la aplicación, asi como la base de datos que por ahora es solo un simple array en local, pero estoy priorizando el desarrollo del backend.
 
 * **Tests:** Aún no he implementado pruebas en todos los módulos, pero es una tarea pendiente.
 * **Documentación:** La documentación de los *endpoints* del backend se encuentra en el archivo `README.md` de la carpeta `backend`.
+
+Puedes ver el proyecto entrando a: 
 
 ## Ejecucion
 
