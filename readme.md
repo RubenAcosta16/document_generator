@@ -8,11 +8,11 @@ Esta aplicación está diseñada para simplificar la creación de documentos en 
 
 En lugar de modificar documentos existentes o crear formatos desde cero, esta herramienta te permite diseñar una plantilla con **variables**.
 
-1. inicia sesion en /login
-1.  Primero ve a la ruta en el navegador /templates
-2.  **Crea tu plantilla:** Simplemente toma un documento .docx con el formato que deseas y define tus variables.
-3.  **Define tus variables:** Usa la sintaxis `{nombre_variable}`. Por ejemplo, si necesitas un campo para un nombre, solo escribe `{nombre}` en tu documento.
-4.  **Genera el documento:** Al cargar la plantilla en la aplicación, se detectarán automáticamente las variables y se crearán los campos de entrada correspondientes. Solo ingresa los valores y genera un documento listo al instante,rándote tiempo.
+1.  Inicia sesion en /login o crea cuenta en /register
+2.  Ya iniciado sesion ve a la ruta en el navegador /templates
+3.  **Crea tu plantilla:** Simplemente toma un documento .docx con el formato que deseas y define tus variables.
+4.  **Define tus variables:** Usa la sintaxis `{nombre_variable}`. Por ejemplo, si necesitas un campo para un nombre, solo escribe `{nombre}` en tu documento.
+5.  **Genera el documento:** Al cargar la plantilla en la aplicación, se detectarán automáticamente las variables y se crearán los campos de entrada correspondientes. Solo ingresa los valores y genera un documento listo al instante,rándote tiempo.
 
 ### Características adicionales de las variables:
 
@@ -52,9 +52,11 @@ Para esto se debe ejectuar los proyectos backend y frontend, asi que abre 2 term
 ### Backend
 
 * Escribe cd backend
-* Luego pnpm run dev
+* Luego pnpm install
+* Y pnpm run dev
 
 ### Frontend
 
 * Escribe cd frotend
-* Luego pnpm run dev
+* Luego pnpm install
+* Y pnpm run dev
