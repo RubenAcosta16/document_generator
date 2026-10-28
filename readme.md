@@ -42,7 +42,6 @@ Actualmente, el proyecto está en curso debido a otros compromisos. Aún falta i
 * **Tests:** Aún no he implementado pruebas en todos los módulos, pero es una tarea pendiente.
 * **Documentación:** La documentación de los *endpoints* del backend se encuentra en el archivo `README.md` de la carpeta `backend`.
 
-Puedes ver el proyecto entrando a: 
 
 ## Ejecucion
 
